@@ -1,7 +1,7 @@
 
 /* IMPORT */
 
-import * as _ from 'lodash';
+import isFunction = require ( 'lodash/isFunction' );
 
 /* AUTOSUSPEND */
 
@@ -22,7 +22,7 @@ function autosuspend ( container, options = container.autosuspend ) {
 
     const method = container[key];
 
-    if ( !_.isFunction ( method ) || proto[key] || !options.methods.test ( key ) ) return; // Not an API method
+    if ( !isFunction ( method ) || proto[key] || !options.methods.test ( key ) ) return; // Not an API method
 
     function trigger ( method ) {
 
