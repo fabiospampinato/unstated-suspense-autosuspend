@@ -1,7 +1,7 @@
 {
   "name": "unstated-suspense-autosuspend",
   "description": "Automatically use unstated-suspense on all your container's API methods.",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
