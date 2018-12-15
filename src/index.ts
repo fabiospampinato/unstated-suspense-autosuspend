@@ -7,7 +7,8 @@ import isFunction = require ( 'lodash/isFunction' );
 
 const defaultOptions = {
   bubbles: Infinity, // How many levels to bubble up the suspension
-  methods: /^(?!_|middleware)/ // Methods matching this regex will be autosuspended
+  methods: /^(?!_|middleware)/, // Methods matching this regex will be autosuspended
+  middlewares: true // Suspend middlewares as well
 };
 
 function autosuspend ( container, options = container.autosuspend ) {
@@ -40,6 +41,8 @@ function autosuspend ( container, options = container.autosuspend ) {
 
     function handleResult ( result ) {
 
+      if ( options.middlewares ) trigger ( 'unsuspendMiddlewares' );
+
       trigger ( 'unsuspend' );
 
       return result;
@@ -47,6 +50,8 @@ function autosuspend ( container, options = container.autosuspend ) {
     }
 
     function handleError ( err ) {
+
+      if ( options.middlewares ) trigger ( 'unsuspendMiddlewares' );
 
       trigger ( 'unsuspend' );
 
@@ -57,6 +62,8 @@ function autosuspend ( container, options = container.autosuspend ) {
     function autosuspendWrapper () {
 
       try {
+
+        if ( options.middlewares ) trigger ( 'suspendMiddlewares' );
 
         trigger ( 'suspend' );
 

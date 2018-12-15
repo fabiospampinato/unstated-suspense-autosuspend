@@ -19,7 +19,8 @@ It supports a second optional options object which by default looks like this:
 ```js
 {
   bubbles: Infinity, // How many levels to bubble up the suspension
-  methods: /^(?!_|middleware)/ // Methods matching this regex will be autosuspended
+  methods: /^(?!_|middleware)/, // Methods matching this regex will be autosuspended
+  middlewares: true // Suspend middlewares as well
 }
 ```
 
